@@ -30,7 +30,6 @@ jobs:
     - name: Install dependencies
       run: |
         pip install --upgrade pip
-        sudo apt-get update && sudo apt-get install allure
         pip install -r requirements.txt
 
     - name: Install Playwright browsers
@@ -38,6 +37,9 @@ jobs:
 
     - name: Run Playwright tests and collect Allure results
       run: pytest --alluredir allure-results
+    
+    - name: Setup Allure CLI
+      uses: simple-elf/setup-allure-action@v2
     
     - name: Generate Allure Report
       if: always()
