@@ -35,16 +35,16 @@ jobs:
     - name: Install Playwright browsers
       run: playwright install --with-deps
 
-    - name: Run Playwright tests and collect Allure results
-      run: pytest --alluredir allure-results
-    
     - name: Setup Allure CLI
       run: |
         ALLURE_VERSION="2.29.0-1"
         wget https://github.com/allure-framework/allure2/releases/download/2.29.0/allure_${ALLURE_VERSION}_all.deb
         sudo dpkg -i allure_${ALLURE_VERSION}_all.deb
         sudo apt --fix-broken install -y
-        allure --version
+        allure --version  
+
+    - name: Run Playwright tests and collect Allure results
+      run: pytest --alluredir allure-results
     
     - name: Generate Allure Report
       if: always()
