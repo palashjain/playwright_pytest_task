@@ -5,7 +5,7 @@ import allure
 
 class HomePage(BasePage):
 
-    STORES_NAV = "//span[@data-testid='components_SidebarNav_index_span'][contains(text(),'Stores')]"
+    STORES_NAV = "//span[@data-testid='components_SidebarNav_index_span'][contains(text(),'Stores')]/parent::div"
     USER_PROFILE = "//div[@id='avatarContainer']"
     LOGOUT_BUTTON = "text=Log Out"
 
@@ -16,7 +16,6 @@ class HomePage(BasePage):
     @allure.step("Navigate to Stores section")
     def navigate_to_stores(self) -> None:
         self.wait_for_load_state('networkidle')
-        self.page.wait_for_timeout(5000)
         self.click(self.STORES_NAV)
         self.logger.info("Navigated to Stores section")
 

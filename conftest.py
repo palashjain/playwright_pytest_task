@@ -41,7 +41,13 @@ def context(browser: Browser) -> BrowserContext:
 
     context = browser.new_context(
         viewport={"width": 1366, "height": 768},
-        accept_downloads=True
+        accept_downloads=True,
+        permissions=['geolocation'],
+        geolocation={
+            'latitude': 40.7128,
+            'longitude': -74.0060,
+            'accuracy': 100
+        }
     )
 
     context.set_default_timeout(config.timeout)
