@@ -39,7 +39,12 @@ jobs:
       run: pytest --alluredir allure-results
     
     - name: Setup Allure CLI
-      uses: simple-elf/setup-allure-action@v2
+      run: |
+        ALLURE_VERSION="2.29.0-1"
+        wget https://github.com/allure-framework/allure2/releases/download/2.29.0/allure_${ALLURE_VERSION}_all.deb
+        sudo dpkg -i allure_${ALLURE_VERSION}_all.deb
+        sudo apt --fix-broken install -y
+        allure --version
     
     - name: Generate Allure Report
       if: always()
